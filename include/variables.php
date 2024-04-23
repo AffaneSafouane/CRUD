@@ -30,3 +30,4 @@ $diplomes = $diplomesStatement->fetchAll();
 
 $rootPath = $_SERVER['DOCUMENT_ROOT'];
 $rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/CRUD/';
+

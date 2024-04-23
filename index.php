@@ -23,7 +23,6 @@ require_once(__DIR__ . "/include/variables.php");
                 unset($_SESSION['ADD_SUCCESS']); ?>
             </div>
         <?php endif; ?>
-
         <?php if(isset($_SESSION['ELEVE_ID_ERROR'])): ?>
             <div class="alert alert-danger">
                 <?php echo $_SESSION['ELEVE_ID_ERROR'];
@@ -37,7 +36,7 @@ require_once(__DIR__ . "/include/variables.php");
                 unset($_SESSION['NO_ELEVE']); ?>
             </div>
         <?php endif; ?>
-
+      
         <?php if(isset($_SESSION['EDIT_ELEVE_SUCCESS'])): ?>
             <div class="alert alert-success">
                 <?php echo $_SESSION['EDIT_ELEVE_SUCCESS'];
