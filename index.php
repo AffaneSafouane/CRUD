@@ -1,6 +1,9 @@
 <?php
 session_start();
+require_once(__DIR__. "/config/mysql.php");
 require_once(__DIR__ . "/include/variables.php");
+require_once(__DIR__ . "/include/functions.php");
+$students = showEtudiant($mysqlClient);
 ?>
 
 <!DOCTYPE html>
@@ -17,34 +20,35 @@ require_once(__DIR__ . "/include/variables.php");
 <body class="d-flex flex-column min-vh-100">
     <?php include_once($rootPath . "/CRUD/include/header.php"); ?>
     <div class="container">
-        <?php if(isset($_SESSION['ADD_SUCCESS'])): ?>
+        <?php if (isset($_SESSION['ADD_SUCCESS'])) : ?>
             <div class="alert alert-success">
                 <?php echo $_SESSION['ADD_SUCCESS'];
                 unset($_SESSION['ADD_SUCCESS']); ?>
             </div>
         <?php endif; ?>
-        <?php if(isset($_SESSION['ELEVE_ID_ERROR'])): ?>
+
+        <?php if (isset($_SESSION['ELEVE_ID_ERROR'])) : ?>
             <div class="alert alert-danger">
                 <?php echo $_SESSION['ELEVE_ID_ERROR'];
                 unset($_SESSION['ELEVE_ID_ERROR']); ?>
             </div>
         <?php endif; ?>
 
-        <?php if(isset($_SESSION['NO_ELEVE'])): ?>
+        <?php if (isset($_SESSION['NO_ELEVE'])) : ?>
             <div class="alert alert-danger">
                 <?php echo $_SESSION['NO_ELEVE'];
                 unset($_SESSION['NO_ELEVE']); ?>
             </div>
         <?php endif; ?>
-      
-        <?php if(isset($_SESSION['EDIT_ELEVE_SUCCESS'])): ?>
+
+        <?php if (isset($_SESSION['EDIT_ELEVE_SUCCESS'])) : ?>
             <div class="alert alert-success">
                 <?php echo $_SESSION['EDIT_ELEVE_SUCCESS'];
                 unset($_SESSION['EDIT_ELEVE_SUCCESS']); ?>
             </div>
         <?php endif; ?>
 
-        <?php if(isset($_SESSION['SUPP_ELEVE'])): ?>
+        <?php if (isset($_SESSION['SUPP_ELEVE'])) : ?>
             <div class="alert alert-success">
                 <?php echo $_SESSION['SUPP_ELEVE'];
                 unset($_SESSION['SUPP_ELEVE']); ?>
@@ -66,21 +70,21 @@ require_once(__DIR__ . "/include/variables.php");
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <?php foreach ($eleves as $eleve) : ?>
-                <tbody>
+            <tbody>
+                <?php foreach ($students as $key => $student) : ?>
                     <tr>
-                        <th scope="row"><?php echo $eleve['eleve_id'] ?></th>
-                        <td><?php echo $eleve['nom']; ?></td>
-                        <td><?php echo $eleve['prenom']; ?></td>
-                        <td><?php echo $eleve['ville']; ?></td>
-                        <td><?php echo $eleve['sexe']; ?></td>
-                        <td><?php echo $eleve['naissance']; ?></td>
-                        <td><?php echo $eleve['classe']; ?></td>
-                        <td><a class="link-warning" href="/CRUD/eleves/update.php?id=<?php echo($eleve['eleve_id']); ?>">Editer</a></td>
-                        <td><a class="link-danger" href="/CRUD/eleves/delete.php?id=<?php echo($eleve['eleve_id']); ?>">Supprimer</a></td>
+                        <th scope="row"><?php echo $key + 1; ?></th>
+                        <td><?php echo $student['nom']; ?></td>
+                        <td><?php echo $student['prenom']; ?></td>
+                        <td><?php echo $student['ville']; ?></td>
+                        <td><?php echo $student['sexe']; ?></td>
+                        <td><?php echo $student['naissance']; ?></td>
+                        <td><?php echo $student['classe']; ?></td>
+                        <td><a class="link-warning" href="/CRUD/etudiants/update.php?id=<?php echo ($student['etudiant_id']); ?>">Editer</a></td>
+                        <td><a class="link-danger" href="/CRUD/etudiants/delete.php?id=<?php echo ($student['etudiant_id']); ?>">Supprimer</a></td>
                     </tr>
-                </tbody>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </tbody>
         </table>
     </div>
 </body>

@@ -21,7 +21,7 @@ if (!isset($_POST['id']) || $_POST['id'] == '5') {
         header('location: /CRUD/diplomes/liste_diplomes.php');
     } else {
         $_SESSION['SUPP_DIPLOME_ERROR'] = "Un problème est survenu lors de l'opération";
-        header("location: /CRUD/eleves/diplome_delete.php?id=" . $id);
+        header("location: /CRUD/diplomes/diplome_delete.php?id=" . $id);
         exit();
     }
 }

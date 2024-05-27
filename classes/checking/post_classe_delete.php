@@ -21,7 +21,7 @@ if (!isset($_POST['id'])) {
         header('location: /CRUD/classes/liste_classe.php');
     } else {
         $_SESSION['SUPP_CLASSE_ERROR'] = "Un problème est survenu lors de l'opération";
-        header("location: /CRUD/eleves/classe_delete.php?id=" . $id);
+        header("location: /CRUD/classes/classe_delete.php?id=" . $id);
         exit();
     }
 }

@@ -14,10 +14,10 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Élèves</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a href="/CRUD/eleves/liste.php" class="dropdown-item">Liste des élèves</a>
+                                <a href="/CRUD/etudiants/liste.php" class="dropdown-item">Liste des élèves</a>
                             </li>
                             <li>
-                                <a href="/CRUD/eleves/ajout.php" class="dropdown-item">Ajouter un élève</a>
+                                <a href="/CRUD/etudiants/ajout.php" class="dropdown-item">Ajouter un élève</a>
                             </li>
                         </ul>
                     </li>

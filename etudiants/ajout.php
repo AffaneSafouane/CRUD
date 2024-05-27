@@ -18,28 +18,35 @@ require_once("../include/variables.php");
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+
     <?php include_once($rootPath . "/CRUD/include/header.php"); ?>
+
     <div class="container">
         <h1 class="mt-2 mb-3">Ajouter un élève</h1>
-        <form action="<?php echo ($rootUrl . 'eleves/checking/insertion.php'); ?>" method="POST">
+        <form action="/check.php" method="POST">
+
             <?php if (isset($_SESSION['ADD_ERROR'])) : ?>
                 <div class="alert alert-danger mt-3">
                     <?php echo $_SESSION['ADD_ERROR'];
                     unset($_SESSION['ADD_ERROR']); ?>
                 </div>
             <?php endif; ?>
+
             <div class="mb-3">
                 <label for="nom" class="form-label">Nom*</label>
                 <input type="text" id="nom" name="nom" placeholder="Nom de l'élève" class="form-control" value="Doe" required>
             </div>
+
             <div class="mb-3">
                 <label for="prenom" class="form-label">Prénom*</label>
                 <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Prénom de l'élève" value="John" required>
             </div>
+
             <div class="mb-3">
                 <label for="ville" class="form-label">Ville*</label>
                 <input type="text" id="ville" name="ville" class="form-control" placeholder="Ville de l'élève" required>
             </div>
+
             <div class="mb-3">
                 <label for="sexe" class="form-label">Sexe*</label>
                 <select name="sexe" id="sexe" class="form-select" required>
@@ -48,12 +55,24 @@ require_once("../include/variables.php");
                     <option value="F">Femme</option>
                 </select>
             </div>
+
             <div class="mb-3">
-                <label for="naissance" class="form-label">Date de naissance</label>
-                <input type='date' id='naissance' name='naissance' class='form-control' max="<?php echo $min; ?>" min="<?php echo $lim; ?>" value="<?php echo $min; ?>">
+                <label for="naissance" class="form-label">Date de naissance*</label>
+                <input type='date' id='naissance' name='naissance' class='form-control' max="<?php echo $min; ?>" min="<?php echo $lim; ?>" value="<?php echo $min; ?>" required>
             </div>
+
             <div class="mb-3">
-                <label for="classe" class="form-label">Classe</label>
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" type="email" id="email" name="email" placeholder="test@exemple.com">
+            </div>
+
+            <div class="mb-3">
+                <label for="téléphone" class="form-label">Numéro de téléphone</label>
+                <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2} [0-9]{2}" placeholder="Format : 07 65 24 87 41">
+            </div>
+
+            <div class="mb-3">
+                <label for="classe" class="form-label">Classe*</label>
                 <select name="classe_id" id="classe_id" class="form-select" required>
                     <option value="" selected disabled>Sélectionner une classe</option>
                     <?php foreach ($classes as $classe) : ?>
@@ -61,8 +80,9 @@ require_once("../include/variables.php");
                     <?php endforeach; ?>
                 </select>
             </div>
+
             <div class="mb-3">
-                <label for="diplomes" class="form-label">Diplomes</label>
+                <label for="diplomes" class="form-label">Diplomes*</label>
                 <?php foreach ($diplomes as $diplome) : ?>
                     <div class="form-check">
                         <label for="diplome" class="form-check-label"><?php echo $diplome["diplome"]; ?></label>
@@ -70,6 +90,7 @@ require_once("../include/variables.php");
                     </div>
                 <?php endforeach; ?>
             </div>
+
             <button type="submit" class="btn btn-primary mt-2 mb-4" name="ok">Ajouter</button>
         </form>
     </div>

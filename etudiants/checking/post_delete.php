@@ -12,17 +12,17 @@ if (!isset($_POST['id'])) {
 
 $id = $_POST['id'];
 
-$deleteEleveStatement = $mysqlClient->prepare('DELETE FROM eleve WHERE eleve_id = :id');
-$deleteEleveStatement->execute([
+$deleteEtudiantStatement = $mysqlClient->prepare('DELETE FROM etudiant WHERE etudiant_id = :id');
+$deleteEtudiantStatement->execute([
     'id' => $id,
 ]);
 
-if ($deleteEleveStatement) {
-    $_SESSION['SUPP_ELEVE'] = "L'élève a bien été supprimé";
+if ($deleteetudiantStatement) {
+    $_SESSION['SUPP_ELEVE'] = "L'étudiant a bien été supprimé";
     header('Location: /CRUD/index.php');
 } else {
     $_SESSION['SUPP_ELEVE_ERROR'] = "Un problème est survenu lors de l'opération";
-    header("location: /CRUD/eleves/delete.php?id=" . $id);
+    header("location: /CRUD/etudiants/delete.php?id=" . $id);
     exit();
 }
 ?>

@@ -19,28 +19,28 @@ require_once(__DIR__ . "/../include/variables.php");
     <div class="container">
         <h1 class="mt-2 mb-3">Diploma List</h1>
 
-        <?php if(isset($_SESSION['DIPLOME_SUCCESS'])): ?>
+        <?php if (isset($_SESSION['DIPLOME_SUCCESS'])) : ?>
             <div class="alert alert-success">
                 <?php echo $_SESSION['DIPLOME_SUCCESS'];
                 unset($_SESSION['DIPLOME_SUCCESS']); ?>
             </div>
         <?php endif; ?>
 
-        <?php if(isset($_SESSION['DIPLOME_ID_ERROR'])): ?>
+        <?php if (isset($_SESSION['DIPLOME_ID_ERROR'])) : ?>
             <div class="alert alert-danger">
                 <?php echo $_SESSION['DIPLOME_ID_ERROR'];
                 unset($_SESSION['DIPLOME_ID_ERROR']); ?>
             </div>
         <?php endif; ?>
 
-        <?php if(isset($_SESSION['NO_DIPLOME'])): ?>
+        <?php if (isset($_SESSION['NO_DIPLOME'])) : ?>
             <div class="alert alert-danger">
                 <?php echo $_SESSION['NO_DIPLOME'];
                 unset($_SESSION['NO_DIPLOME']); ?>
             </div>
         <?php endif; ?>
 
-        <?php if(isset($_SESSION['EDIT_DIPLOME_SUCCESS'])): ?>
+        <?php if (isset($_SESSION['EDIT_DIPLOME_SUCCESS'])) : ?>
             <div class="alert alert-success">
                 <?php echo $_SESSION['EDIT_DIPLOME_SUCCESS'];
                 unset($_SESSION['EDIT_DIPLOME_SUCCESS']); ?>
@@ -63,18 +63,18 @@ require_once(__DIR__ . "/../include/variables.php");
                     <th></th>
                 </tr>
             </thead>
-            <?php foreach ($diplomes as $diplome) : ?>
-                <?php if ($diplome['diplome_id'] != '5') : ?>
-                    <tbody>
+            <tbody>
+                <?php foreach ($diplomes as $key => $diplome) : ?>
+                    <?php if ($diplome['diplome_id'] != '1') : ?>
                         <tr>
-                            <th scope="row"><?php echo $diplome['diplome_id']; ?></th>
+                            <th scope="row"><?php echo $key + 1; ?></th>
                             <td><?php echo $diplome["diplome"]; ?></td>
                             <td><a class="link-warning" href="diplome_update.php?id=<?php echo ($diplome["diplome_id"]); ?>">Editer</a></td>
                             <td><a class="link-danger" href="diplome_delete.php?id=<?php echo ($diplome["diplome_id"]); ?>">Supprimer</a></td>
                         </tr>
-                    </tbody>
-                <?php endif; ?>
-            <?php endforeach; ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </tbody>
         </table>
     </div>
 </body>

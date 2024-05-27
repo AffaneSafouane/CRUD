@@ -10,15 +10,15 @@ if (!isset($getData['id']) || !is_numeric($getData['id'])) {
     header("location: /CRUD/index.php");
     exit();
 } else {
-    $retrieveEleveStatement = $mysqlClient->prepare('SELECT * FROM eleve WHERE eleve_id = :id');
-    $retrieveEleveStatement->execute([
+    $retrieveEtudiantStatement = $mysqlClient->prepare('SELECT * FROM etudiant WHERE etudiant_id = :id');
+    $retrieveEtudiantStatement->execute([
         'id' => $getData['id'],
     ]);
 
-    $eleve = $retrieveEleveStatement->fetch(PDO::FETCH_ASSOC);
+    $etudiant = $retrieveEtudiantStatement->fetch(PDO::FETCH_ASSOC);
 
     // Si l'élève n'est pas trouvé, renvoyer un message d'erreur
-    if (!$eleve) {
+    if (!$etudiant) {
         $_SESSION['NO_ELEVE'] = "Aucun élève trouvé avec cette ID " . $getData['id'];
         header("location: /CRUD/index.php");
         exit();
@@ -56,8 +56,8 @@ if (!isset($getData['id']) || !is_numeric($getData['id'])) {
             </div>
         <?php endif; ?>
 
-        <h1 class="mt-2 mb-3">Supprimer l'élève ?</h1>
-        <form action="<?php echo ($rootUrl . 'eleves/checking/post_delete.php'); ?>" method="POST">
+        <h1 class="mt-2 mb-3">Supprimer l'étudiant ?</h1>
+        <form action="<?php echo ($rootUrl . 'etudiants/checking/post_delete.php'); ?>" method="POST">
             <div class="mb-3 visually-hidden">
                 <label for="id" class="form-label">Identifiant de l'élève</label>
                 <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $_GET['id']; ?>">
